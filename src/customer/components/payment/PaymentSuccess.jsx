@@ -17,19 +17,17 @@ const PaymentSuccess = () => {
     const dispatch = useDispatch();
     const {order} = useSelector(store => store)
 
-    console.log("order", order.order);
+    console.log("order", paymentId);
 
     useEffect(()=>{
         const urlParam = new URLSearchParams(window.location.search)
         console.log("ayudin");
         console.log("param", urlParam);
-        setSessionId(urlParam.get("session_id"))
         setPaymentId(urlParam.get("session_id"))
-        setPaymentStatus(urlParam.get("stripe_payment_link_status"))
     }, [])
 
     useEffect(()=>{
-      if(paymentId){
+      if(paymentId & orderId){
           const data = {orderId, paymentId}
           console.log("datasa", data);
           dispatch(getOrderById(orderId))
